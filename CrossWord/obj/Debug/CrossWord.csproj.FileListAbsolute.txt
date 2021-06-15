@@ -1,0 +1,17 @@
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\CrossWord.exe.config
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\CrossWord.exe
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\CrossWord.pdb
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\Newtonsoft.Json.dll
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\Newtonsoft.Json.xml
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.AssemblyReference.cache
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.About.resources
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.CreateAndSaveOwnWords.resources
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.EditWord.resources
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.FinalCrosswordBoard.resources
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.MainBoard.resources
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Properties.Resources.resources
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.GenerateResource.cache
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.CoreCompileInputs.cache
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.CopyComplete
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.exe
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.pdb
