@@ -3,7 +3,6 @@ C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\CrossWord.pdb
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\Newtonsoft.Json.dll
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\bin\Debug\Newtonsoft.Json.xml
-C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.AssemblyReference.cache
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.About.resources
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.CreateAndSaveOwnWords.resources
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.Forms.EditWord.resources
