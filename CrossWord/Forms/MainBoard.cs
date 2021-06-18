@@ -302,9 +302,9 @@ namespace CrossWord.Forms
                 for (int i = 0; i < Globals.gridCellCount; i++)
                     for (int j = 0; j < Globals.gridCellCount; j++)
                     {
-                        if (engine.matrix[i, j] != '\0')
+                        if (engine.matrix[i, j].Character != '\0')
                         {
-                            alphabetToMap = "" + engine.matrix[i, j]; // "" is needed as a means for conversion of character to string.
+                            alphabetToMap = "" + engine.matrix[i, j].Character; // "" is needed as a means for conversion of character to string.
                             canvas.DrawString(alphabetToMap, font, brush, (i + 1) * scale + calibration, (j + 1) * scale + calibration);
                         }
                     }

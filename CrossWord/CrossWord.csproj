@@ -69,6 +69,7 @@
     <Compile Include="Classes\BanglaUnicodeParser.cs" />
     <Compile Include="Classes\GameEngine.cs" />
     <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\MatrixCell.cs" />
     <Compile Include="Classes\WindowScaler.cs" />
     <Compile Include="Classes\DetailsAndAxes.cs" />
     <Compile Include="Forms\About.cs">

@@ -28,7 +28,7 @@ namespace CrossWord.Forms
 
         private const int ADJUSTMENT_PIXELS = 30;
 
-        private char[,] matrix;                                 // This is a word matrix to mimic the board.
+        private MatrixCell[,] matrix;                                 // This is a word matrix to mimic the board.
         private char[,,] unicodeMatrix;                         // This is a unicode word matrix to mimic the board.
 
         List<Point> BlankCells = new List<Point>();
@@ -42,7 +42,7 @@ namespace CrossWord.Forms
         /// <param name="wordList">List of word and meanings</param>
         /// <param name="wordPositions">List of word-details</param>
         /// <param name="wordMatrix">2D Board matrix for regular words</param>
-        public FinalCrosswordBoard(List<KeyValuePair<string, string>> wordList, List<RegularWordDetails> wordPositions, char[,] wordMatrix)
+        public FinalCrosswordBoard(List<KeyValuePair<string, string>> wordList, List<RegularWordDetails> wordPositions, MatrixCell[,] wordMatrix)
         {
             InitializeComponent();
             regularOrUnicode = Globals.CurrentWordType.Regular;                         // Note down current wording mode - regular or unicode.
@@ -269,7 +269,7 @@ namespace CrossWord.Forms
                 {
                     for (int i = 0; i < Globals.gridCellCount; i++)
                         for (int j = 0; j < Globals.gridCellCount; j++)
-                            if (matrix[i, j] == '\0')
+                            if (matrix[i, j].Character == '\0')
                                 BlankCells.Add(new Point((i + 1) * scale + 2, (j + 1) * scale + 2));
                 }
                 else if (regularOrUnicode == Globals.CurrentWordType.Unicode)

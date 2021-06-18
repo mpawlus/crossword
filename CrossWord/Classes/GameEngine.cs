@@ -13,7 +13,7 @@ namespace WordPuzzle.Classes
     {
         public List<RegularWordDetails> wordDetails = new List<RegularWordDetails>();
         private Random rnd;
-        public char[,] matrix;                          // This is a word matrix to mimic the board.        
+        public MatrixCell[,] matrix;                          // This is a word matrix to mimic the board.        
         List<Direction> directions = new List<Direction>();
 
         public GameEngine()
@@ -32,7 +32,14 @@ namespace WordPuzzle.Classes
             try
             {
                 wordDetails.Clear();
-                matrix = new char[Globals.gridCellCount, Globals.gridCellCount];
+                matrix = new MatrixCell[Globals.gridCellCount, Globals.gridCellCount];
+                
+                for (int i = 0; i < Globals.gridCellCount; i++) {
+                    for (int j = 0; j < Globals.gridCellCount; j++) {
+                        matrix[i, j] = new MatrixCell();
+                    }
+                }
+
                 rnd = new Random(DateTime.Now.Millisecond);
                 Direction direction;
                 int x, y;
@@ -81,14 +88,14 @@ namespace WordPuzzle.Classes
                 {
                     if (wrd.X > 0)                                                                  // If there is a column of cells to the left of the down-directed word.
                         for (int x = wrd.X - 1, y = wrd.Y, i = 0; i < wrd.Word.Length; y++, i++)    // Walk downwards along the left column of the word.
-                            if (matrix[x, y] != '\0')                                               // And see if there is any character to any cell of that column.
+                            if (matrix[x, y].Character != '\0')                                               // And see if there is any character to any cell of that column.
                             {                                                                       // Which would mean another word passed through; hence this is not isolated.
                                 wrd.Isolated = false;
                                 return;
                             }
                     if (wrd.X < Globals.gridCellCount - 1)                                          // If there is a column of cells to the left of the down-directed word.
                         for (int x = wrd.X + 1, y = wrd.Y, i = 0; i < wrd.Word.Length; y++, i++)    // Walk downwards along the right column of the word.
-                            if (matrix[x, y] != '\0')                                               // And see if there is any character to any cell of that column.
+                            if (matrix[x, y].Character != '\0')                                               // And see if there is any character to any cell of that column.
                             {                                                                       // Which would mean another word passed through; hence this is not isolated.
                                 wrd.Isolated = false;
                                 return;
@@ -98,14 +105,14 @@ namespace WordPuzzle.Classes
                 {
                     if (wrd.Y > 0)                                                                  // If there is a row of cells to the top of the right-directed word.
                         for (int x = wrd.X, y = wrd.Y - 1, i = 0; i < wrd.Word.Length; x++, i++)    // Walk righwards along the top row of the word.
-                            if (matrix[x, y] != '\0')                                               // And see if there is any character to any cell of that row.
+                            if (matrix[x, y].Character != '\0')                                               // And see if there is any character to any cell of that row.
                             {                                                                       // Which would mean another word passed through; hence this is not isolated.
                                 wrd.Isolated = false;
                                 return;
                             }
                     if (wrd.Y < Globals.gridCellCount - 1)                                          // If there is a row of cells to the bottom of the right-directed word.
                         for (int x = wrd.X, y = wrd.Y + 1, i = 0; i < wrd.Word.Length; x++, i++)    // Walk righwards along the bottom row of the word.
-                            if (matrix[x, y] != '\0')                                               // And see if there is any character to any cell of that row.
+                            if (matrix[x, y].Character != '\0')                                               // And see if there is any character to any cell of that row.
                             {                                                                       // Which would mean another word passed through; hence this is not isolated.
                                 wrd.Isolated = false;
                                 return;
@@ -121,10 +128,10 @@ namespace WordPuzzle.Classes
 
                 if (wrd.WordDirection == Direction.Down)
                     for (int i = 0, x = wrd.X, y = wrd.Y; i < wrd.Word.Length && i < Globals.gridCellCount; i++, y++)
-                        matrix[x, y] = '\0';
+                        matrix[x, y].Character = '\0';
                 else if (wrd.WordDirection == Direction.Right)
                     for (int i = 0, x = wrd.X, y = wrd.Y; i < wrd.Word.Length && i < Globals.gridCellCount; i++, x++)
-                        matrix[x, y] = '\0';
+                        matrix[x, y].Character = '\0';
             }
             catch (Exception e)
             {
@@ -179,13 +186,13 @@ namespace WordPuzzle.Classes
                 {
                     case Direction.Left:
                         while (--x >= 0)
-                            if (matrix[x, y] == '\0') break;                                // First walk towards the left until you reach the beginning of the word that is already on the board.
+                            if (matrix[x, y].Character == '\0') break;                                // First walk towards the left until you reach the beginning of the word that is already on the board.
                         ++x;
 
                         for (int i = 0; x < Globals.gridCellCount && i < Globals.MAX_WORD_LENGTH; x++, i++) // Now walk towards right until you reach the end of the word that is already on the board.
                         {
-                            if (matrix[x, y] == '\0') break;
-                            chars[i] = matrix[x, y];                            
+                            if (matrix[x, y].Character == '\0') break;
+                            chars[i] = matrix[x, y].Character;                            
                         }
 
                         string str = new string(chars);
@@ -197,13 +204,13 @@ namespace WordPuzzle.Classes
                         return true;                                                        // Else, passed all validation checks for a legitimate overlap, hence return true.
                     case Direction.Right:
                         while (--x >= 0)
-                            if (matrix[x, y] == '\0') break;                                // First walk towards the left until you reach the beginning of the word that is already on the board.
+                            if (matrix[x, y].Character == '\0') break;                                // First walk towards the left until you reach the beginning of the word that is already on the board.
                         ++x;
 
                         for (int i = 0; x < Globals.gridCellCount && i < Globals.MAX_WORD_LENGTH; x++, i++) // Now walk towards right until you reach the end of the word that is already on the board.
                         {
-                            if (matrix[x, y] == '\0') break;
-                            chars[i] = matrix[x, y];
+                            if (matrix[x, y].Character == '\0') break;
+                            chars[i] = matrix[x, y].Character;
                         }
 
                         str = new string(chars);
@@ -215,13 +222,13 @@ namespace WordPuzzle.Classes
                         return true;                                                                // Else, passed all validation checks for a legitimate overlap, hence return true.
                     case Direction.Up:
                         while (--y >= 0)
-                            if (matrix[x, y] == '\0') break;                                        // First walk upwards until you reach the beginning of the word that is already on the board.
+                            if (matrix[x, y].Character == '\0') break;                                        // First walk upwards until you reach the beginning of the word that is already on the board.
                         ++y;
 
                         for (int i = 0; y < Globals.gridCellCount && i < Globals.MAX_WORD_LENGTH; y++, i++) // Now walk downwards until you reach the end of the word that is already on the board.
                         {
-                            if (matrix[x, y] == '\0') break;
-                            chars[i] = matrix[x, y];
+                            if (matrix[x, y].Character == '\0') break;
+                            chars[i] = matrix[x, y].Character;
                         }
 
                         str = new string(chars);
@@ -233,13 +240,13 @@ namespace WordPuzzle.Classes
                         return true;                                                                // Else, passed all validation checks for a legitimate overlap, hence return true.
                     case Direction.Down:
                         while (--y >= 0)
-                            if (matrix[x, y] == '\0') break;                                        // First walk upwards until you reach the beginning of the word that is already on the board.
+                            if (matrix[x, y].Character == '\0') break;                                        // First walk upwards until you reach the beginning of the word that is already on the board.
                         ++y;
 
                         for (int i = 0; y < Globals.gridCellCount && i < Globals.MAX_WORD_LENGTH; y++, i++) // Now walk downwards until you reach the end of the word that is already on the board.
                         {
-                            if (matrix[x, y] == '\0') break;
-                            chars[i] = matrix[x, y];
+                            if (matrix[x, y].Character == '\0') break;
+                            chars[i] = matrix[x, y].Character;
                         }
 
                         str = new string(chars);
@@ -283,7 +290,7 @@ namespace WordPuzzle.Classes
                 {
                     for (int i = 0; i < word.Length; y++, i++)
                     {
-                        if (matrix[x - 1, y] != '\0')
+                        if (matrix[x - 1, y].Character != '\0')
                             isValid = LegitimateOverlapOfAnExistingWord(x, y, word, Direction.Left);
                         if (!isValid) break;
                     }
@@ -314,7 +321,7 @@ namespace WordPuzzle.Classes
             {
                 if (x == 0) return true;
                 if (x - 1 >= 0)
-                    return matrix[x - 1, y] == '\0';
+                    return matrix[x - 1, y].Character == '\0';
                 return false;
             }
             catch (Exception e)
@@ -346,7 +353,7 @@ namespace WordPuzzle.Classes
                 {
                     for (int i = 0; i < word.Length; y++, i++)
                     {
-                        if (matrix[x + 1, y] != '\0')
+                        if (matrix[x + 1, y].Character != '\0')
                             isValid = LegitimateOverlapOfAnExistingWord(x, y, word, Direction.Right);
                         if (!isValid) break;
                     }
@@ -377,7 +384,7 @@ namespace WordPuzzle.Classes
             {
                 if (x + word.Length == Globals.gridCellCount) return true;
                 if (x + word.Length < Globals.gridCellCount)
-                    return matrix[x + word.Length, y] == '\0';
+                    return matrix[x + word.Length, y].Character == '\0';
                 return false;
             }
             catch (Exception e)
@@ -405,7 +412,7 @@ namespace WordPuzzle.Classes
             {
                 if (y == 0) return true;
                 if (y - 1 >= 0)
-                    return matrix[x, y - 1] == '\0';
+                    return matrix[x, y - 1].Character == '\0';
                 return false;
             }
             catch (Exception e)
@@ -438,7 +445,7 @@ namespace WordPuzzle.Classes
                 {
                     for (int i = 0; i < word.Length; x++, i++)
                     {
-                        if (matrix[x, y - 1] != '\0')
+                        if (matrix[x, y - 1].Character != '\0')
                             isValid = LegitimateOverlapOfAnExistingWord(x, y, word, Direction.Up);
                         if (!isValid) break;
                     }
@@ -476,7 +483,7 @@ namespace WordPuzzle.Classes
                 {
                     for (int i = 0; i < word.Length; x++, i++)
                     {
-                        if (matrix[x, y + 1] != '\0')
+                        if (matrix[x, y + 1].Character != '\0')
                             isValid = LegitimateOverlapOfAnExistingWord(x, y, word, Direction.Down);
                         if (!isValid) break;
                     }
@@ -507,7 +514,7 @@ namespace WordPuzzle.Classes
             {
                 if (y + word.Length == Globals.gridCellCount) return true;
                 if (y + word.Length < Globals.gridCellCount)
-                    return matrix[x, y + word.Length] == '\0';
+                    return matrix[x, y + word.Length].Character == '\0';
                 return false;
             }
             catch (Exception e)
@@ -544,9 +551,9 @@ namespace WordPuzzle.Classes
                         for (int i = 0, xx = x; i < word.Length; i++, xx++) // First we check if the word can be placed in the array. For this it needs blanks there or the same letter (of another word) in the cell.
                         {
                             if (xx >= Globals.gridCellCount) return false;  // Falling outside the grid. Hence placement unavailable.
-                            if (matrix[xx, y] != '\0')
+                            if (matrix[xx, y].Character != '\0')
                             {
-                                if (matrix[xx, y] != word[i])   // If there is an overlap, then we see if the characters match. If matches, then it can still go there.
+                                if (matrix[xx, y].Character != word[i])   // If there is an overlap, then we see if the characters match. If matches, then it can still go there.
                                 {
                                     placeAvailable = false;
                                     break;
@@ -604,17 +611,21 @@ namespace WordPuzzle.Classes
                         if (!leftFree || !topFree || !bottomFree || !rightMostFree) return false;
 
                         // If all the cells are blank, or a non-conflicting overlap is available, then this word can be placed there. So place it.
-                        for (int i = 0, j = x; i < word.Length; i++, j++)
-                            matrix[j, y] = word[i];
+                        for (int i = 0, j = x; i < word.Length; i++, j++) {
+                            matrix[j, y].Character = word[i];
+                            if (i == 0) {
+                                matrix[j, y].Index = index;
+                            }
+                        }
                         SaveWordDetailsInCollection(word, wordMeaning, x, y, direction, attempts, false, index);
                         return true;
                     case Direction.Down:
                         for (int i = 0, yy = y; i < word.Length; i++, yy++)     // First we check if the word can be placed in the array. For this it needs blanks there or the same letter (of another word) in the cell.
                         {
                             if (yy >= Globals.gridCellCount) return false;      // Falling outside the grid. Hence placement unavailable.
-                            if (matrix[x, yy] != '\0')
+                            if (matrix[x, yy].Character != '\0')
                             {
-                                if (matrix[x, yy] != word[i])                   // If there is an overlap, then we see if the characters match. If matches, then it can still go there.
+                                if (matrix[x, yy].Character != word[i])                   // If there is an overlap, then we see if the characters match. If matches, then it can still go there.
                                 {
                                     placeAvailable = false;
                                     break;
@@ -672,8 +683,13 @@ namespace WordPuzzle.Classes
                         if (!leftFree || !rightFree || !topFree || !bottomMostBottomFree) return false;
 
                         // If all the cells are blank, or a non-conflicting overlap is available, then this word can be placed there. So place it.
-                        for (int i = 0, j = y; i < word.Length; i++, j++)
-                            matrix[x, j] = word[i];
+                        for (int i = 0, j = y; i < word.Length; i++, j++) {
+                            matrix[x, j].Character = word[i];
+
+                            if (i == 0) {
+                                matrix[x, j].Index = index;
+                            }
+                        }
                         SaveWordDetailsInCollection(word, wordMeaning, x, y, direction, attempts, false, index);
                         return true;
                 }
