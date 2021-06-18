@@ -18,5 +18,6 @@ namespace CrossWord.Interfaces
         bool FailedMaxAttempts { get; set; }
         bool Isolated { get; set; }
         int OutputSequence { get; set; }                         // For output only.
+        int Index { get; set; }
     }
 }

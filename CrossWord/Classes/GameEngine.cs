@@ -50,10 +50,11 @@ namespace WordPuzzle.Classes
                         direction = GetDirection(rnd, 3);                   // From randomizer, orientation of the string to put should be either of the eight orientations.
                         x = GetRandomAxis(rnd, Globals.gridCellCount);      // Get the X-coordinate for the string to place.
                         y = GetRandomAxis(rnd, Globals.gridCellCount);      // Get the Y-coordinate for the string to place.
-                        success = PlaceTheWord(direction, x, y, Words[i].Key, Words[i].Value, i, ref attempts);
+                        var index = i + 1;
+                        success = PlaceTheWord(direction, x, y, Words[i].Key, Words[i].Value, i, ref attempts, index);
                         if (attempts > Globals.MAX_ATTEMPTS)
                         {
-                            SaveWordDetailsInCollection(word, Words[i].Value, -1, -1, Direction.None, attempts, true);
+                            SaveWordDetailsInCollection(word, Words[i].Value, -1, -1, Direction.None, attempts, true, index);
                             break;
                         }
                     }
@@ -531,7 +532,7 @@ namespace WordPuzzle.Classes
         /// <param name="currentWordCount"></param>
         /// <param name="attempts"></param>
         /// <returns></returns>
-        private bool PlaceTheWord(Direction direction, int x, int y, string word, string wordMeaning, int currentWordCount, ref long attempts)
+        private bool PlaceTheWord(Direction direction, int x, int y, string word, string wordMeaning, int currentWordCount, ref long attempts, int index)
         {
             try
             {
@@ -605,7 +606,7 @@ namespace WordPuzzle.Classes
                         // If all the cells are blank, or a non-conflicting overlap is available, then this word can be placed there. So place it.
                         for (int i = 0, j = x; i < word.Length; i++, j++)
                             matrix[j, y] = word[i];
-                        SaveWordDetailsInCollection(word, wordMeaning, x, y, direction, attempts, false);
+                        SaveWordDetailsInCollection(word, wordMeaning, x, y, direction, attempts, false, index);
                         return true;
                     case Direction.Down:
                         for (int i = 0, yy = y; i < word.Length; i++, yy++)     // First we check if the word can be placed in the array. For this it needs blanks there or the same letter (of another word) in the cell.
@@ -673,7 +674,7 @@ namespace WordPuzzle.Classes
                         // If all the cells are blank, or a non-conflicting overlap is available, then this word can be placed there. So place it.
                         for (int i = 0, j = y; i < word.Length; i++, j++)
                             matrix[x, j] = word[i];
-                        SaveWordDetailsInCollection(word, wordMeaning, x, y, direction, attempts, false);
+                        SaveWordDetailsInCollection(word, wordMeaning, x, y, direction, attempts, false, index);
                         return true;
                 }
                 return false;   // Otherwise continue with a different place and index.
@@ -695,7 +696,7 @@ namespace WordPuzzle.Classes
         /// <param name="direction"></param>
         /// <param name="attempts"></param>
         /// <param name="failedMaxAttempts"></param>
-        private void SaveWordDetailsInCollection(string word, string wordMeaning, int x, int y, Direction direction, long attempts, bool failedMaxAttempts)
+        private void SaveWordDetailsInCollection(string word, string wordMeaning, int x, int y, Direction direction, long attempts, bool failedMaxAttempts, int wordIndex)
         {
             try
             {
@@ -708,6 +709,7 @@ namespace WordPuzzle.Classes
                 details.WordDirection = direction;
                 details.AttemptsCount = attempts;
                 details.FailedMaxAttempts = failedMaxAttempts;
+                details.Index = wordIndex;
                 wordDetails.Add(details);
             }
             catch (Exception e)

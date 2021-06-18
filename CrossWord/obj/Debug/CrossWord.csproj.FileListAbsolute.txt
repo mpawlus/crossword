@@ -14,3 +14,4 @@ C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.CopyComplete
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.exe
 C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.pdb
+C:\Users\macie\Workspace\KD\KD-21\CrossWord_v2.0_Project\CrossWord v2.0 Project\CrossWord\obj\Debug\CrossWord.csproj.AssemblyReference.cache

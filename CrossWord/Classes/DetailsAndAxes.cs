@@ -19,6 +19,7 @@ namespace WordPuzzle.Classes
         public bool FailedMaxAttempts { get; set; }
         public bool Isolated { get; set; }
         public int OutputSequence { get; set; }                         // For output only.
+        public int Index { get; set; }
     }
 
     public class UnicodeWordDetails : IDetails, ICompositeUnicode
@@ -33,5 +34,7 @@ namespace WordPuzzle.Classes
         public bool Isolated { get; set; }
         public int OutputSequence { get; set; }                         // For output only.
         public List<string> CompositeUnicodeLetters { get; set; }       // For unicode only.
+        public int Index { get; set; }
+
     }
 }
